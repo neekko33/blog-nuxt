@@ -1,22 +1,25 @@
 .comm-left {
   background-color: #fff;
   padding: 0.3rem;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   border: 1px solid #eee;
   margin-bottom: 1rem;
+  box-shadow: 0 4px 10px rgba(0,2,4,0.06),0 0 1px rgba(0,2,4,0.11);
 }
 
 .comm-box {
-  margin-bottom: 0.3rem;
+  margin-bottom: 1.5rem;
   background-color: #fff;
-  margin-left: 0.5rem;
+  margin-right: 1.5rem;
   padding: 0.3rem;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   border: 1px solid #eee;
+  box-shadow: 0 4px 10px rgba(0,2,4,0.06),0 0 1px rgba(0,2,4,0.11);
 }
 
 .comm-main {
-  margin-top: 0.5rem;
+  margin: 1.5rem 1.5rem 3rem;
+
 }
 
 .list-link {
@@ -139,13 +142,14 @@ code {
 }
 
 .ant-list-item {
-  padding: 12px 5px;
+  padding: 1.5rem 5px;
 }
 
 .bread-div {
-  padding: 0.5rem;
+  padding: 0.75rem;
   border-bottom: 1px solid #eee;
-  background-color: #e1f0ff;
-  border-radius: 5px;
-  font-weight: bold;
+  color: #6b7f94;
+  font-size: .9em;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
 }

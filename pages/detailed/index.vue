@@ -2,6 +2,38 @@
   <div style="padding-top:3.2rem">
     <Header />
     <a-row class="comm-main" type="flex" justify="center">
+      <a-col class="comm-right" :xs="0" :sm="0" :md="8" :lg="6" :xl="5">
+        <div class='comm-box'>
+          <Author-Info :author="article.user" />
+        </div>
+        <a-affix :offsetTop="70" >
+          <div class="detailed-nav comm-box" v-if="tocItems.length > 0">
+            <div class="nav-title">文章目录</div>
+            <div class="toc-list">
+              <a-anchor affix showInkInFixed>
+                <a-anchor-link
+                  v-for="item in tocItems"
+                  :key="item.anchor"
+                  :href="`#${item.anchor}`"
+                  :title="item.text"
+                >
+                  <template v-if="item.children">
+                    <a-anchor-link
+                      v-for="child in item.children"
+                      :key="child.anchor"
+                      :href="`#${child.anchor}`"
+                      :title="child.text"
+                    ></a-anchor-link>
+                  </template>
+                </a-anchor-link>
+              </a-anchor>
+            </div>
+          </div>
+          <div class='comm-box'>
+            <Tags />
+          </div>
+        </a-affix>
+      </a-col>
       <a-col class="comm-left" :xs="24" :sm="24" :md="16" :lg="18" :xl="14">
         <div>
           <div class="bread-div">
@@ -33,36 +65,6 @@
           </div>
         </div>
       </a-col>
-      <a-col class="comm-right" :xs="0" :sm="0" :md="8" :lg="6" :xl="5">
-        <Author-Info :author="article.user" />
-        <a-affix :offsetTop="5" v-if="tocItems.length > 0">
-          <div class="detailed-nav comm-box">
-            <div class="nav-title">文章目录</div>
-            <div class="toc-list">
-              <a-anchor affix showInkInFixed>
-                <a-anchor-link
-                  v-for="item in tocItems"
-                  :key="item.anchor"
-                  :href="`#${item.anchor}`"
-                  :title="item.text"
-                >
-                  <template v-if="item.children">
-                    <a-anchor-link
-                      v-for="child in item.children"
-                      :key="child.anchor"
-                      :href="`#${child.anchor}`"
-                      :title="child.text"
-                    ></a-anchor-link>
-                  </template>
-                </a-anchor-link>
-              </a-anchor>
-            </div>
-          </div>
-        </a-affix>
-        <div class="comm-box" v-else>
-          <a-calendar :fullscreen="false" />
-        </div>
-      </a-col>
     </a-row>
     <Footer />
     <ScrollToTop />
@@ -76,6 +78,7 @@ import Header from '../../components/Header.vue'
 import Footer from '../../components/Footer'
 import AuthorInfo from '../../components/AuthorInfo'
 import ScrollToTop from '../../components/ScrollToTop'
+import Tags from '../../components/Tags'
 import { getArticleById } from '../../api/api'
 import marked from 'marked'
 import hljs from 'highlight.js'
@@ -93,7 +96,8 @@ export default {
     Header,
     Footer,
     AuthorInfo,
-    ScrollToTop
+    ScrollToTop,
+    Tags
   },
   data() {
     return {
@@ -104,7 +108,7 @@ export default {
   },
   head() {
     return {
-      title: `MWWOW｜${this.article.title}`
+      title: `${this.article.title}`
     }
   },
   created() {
@@ -214,11 +218,15 @@ export default {
   color: rgb(30, 144, 255) !important;
 }
 
+.detailed-nav {
+  padding: 1rem;
+}
+
 .nav-title {
-  padding: 0.5rem;
-  text-align: center;
-  color: #888;
-  border-bottom: 1px solid rgb(30, 144, 255);
+  color: #6b7f94;
+  font-size: .9em;
+  letter-spacing: 1px;
+  margin-bottom: .75rem;
 }
 
 .article-menu {

@@ -1,5 +1,5 @@
 <template>
-  <div class="author-div comm-box">
+  <div class="author-div" v-if='author'>
     <div>
       <a-avatar :size="100" :src="author.avatar" />
     </div>
@@ -19,10 +19,25 @@
 </template>
 
 <script>
+import { getArticleById } from '../api/api'
+
 export default {
   name: 'Author',
-  props: {
-    author: Object,
+  data() {
+    return {
+      author: null,
+    }
+  },
+  async mounted() {
+    const author = window.sessionStorage.getItem('authorInfo')
+    if (author) {
+      this.author = JSON.parse(author)
+    } else {
+
+    }
+    const {data:{data}} = await getArticleById(4)
+    this.author = data.user;
+    window.sessionStorage.setItem('authorInfo',JSON.stringify(this.author))
   },
   computed: {
     formatTags() {
@@ -36,7 +51,6 @@ export default {
 .author-div {
   text-align: center;
   padding: 1rem;
-  padding-top: 1.5rem;
 }
 
 .author-div div {

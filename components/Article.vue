@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div style='padding: 0.5rem'>
     <div
       v-if="title != ''"
-      style="margin-left: 1em;font-size: 16px;border-bottom: 1px solid #f0f0f0;"
+      style="margin-left: 1em;font-size: 16px;border-bottom: 1px solid #f0f0f0;color:#6b7f94"
       class="ant-list-header"
     >{{ title }}</div>
     <a-list itemLayout="vertical" :dataSource="list">
@@ -79,4 +79,5 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
