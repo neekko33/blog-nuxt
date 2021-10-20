@@ -5,7 +5,7 @@
     </div>
     <div class="author-introduction">
       <h2>{{ author.username }}</h2>
-      <p>@{{ author.nickname }}</p>
+<!--      <p>@{{ author.nickname }}</p>-->
       <p>{{ author.introduce }}</p>
       <div class="tags" v-for="(item,index) in formatTags" :key="index">
         {{ item }}

@@ -2,33 +2,35 @@
   <div style='padding: 0.5rem'>
     <div
       v-if="title != ''"
-      style="margin-left: 1em;font-size: 16px;border-bottom: 1px solid #f0f0f0;color:#6b7f94"
-      class="ant-list-header"
-    >{{ title }}</div>
-    <a-list itemLayout="vertical" :dataSource="list">
-      <a-list-item slot="renderItem" slot-scope="item" :class="{'my_list':hasBorder}">
-        <div class="list-title">
+      style='margin-left: 1em;font-size: 16px;border-bottom: 1px solid #f0f0f0;color:#6b7f94'
+      class='ant-list-header'
+      id='title'
+    >{{ title }}
+    </div>
+    <a-list itemLayout='vertical' :dataSource='list'>
+      <a-list-item slot='renderItem' slot-scope='item' :class="{'my_list':hasBorder}">
+        <div class='list-title'>
           <nuxt-link :to="'/detailed?id=' + item.id">{{ item.title }}</nuxt-link>
         </div>
-        <div class="list-icon">
+        <div class='list-icon'>
           <span>
-            <a-icon type="calendar" />
+            <a-icon type='calendar' />
             {{ formatTime(item.addTime) }}
           </span>
           <span>
-            <a-icon type="tags" />
+            <a-icon type='tags' />
             {{ item.type.typeName }}
           </span>
           <span>
-            <a-icon type="user" />
+            <a-icon type='user' />
             {{ item.user.username }}
           </span>
         </div>
-        <div class="list-context" v-html="formatMarkdown(item.introduce)"></div>
-        <div class="list-link">
+        <div class='list-context' v-html='formatMarkdown(item.introduce)'></div>
+        <div class='list-link'>
           <nuxt-link :to="'/detailed?id=' + item.id">
             查看全文 &nbsp;&nbsp;
-            <a-icon type="right" />
+            <a-icon type='right' />
           </nuxt-link>
         </div>
       </a-list-item>
